@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Beer List</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/admin.css">
+
+    </head>
+    <body>
+        <main class="container-fluid" ng-app="ToDoApp" ng-controller="beerController">
+            <header class="page-header">
+                <h1>Big Time Brewery Beer List</h1>
+            </header>
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">Add a new Brew</a></li>
+                    <li role="presentation"><a href="#reserve" aria-controls="reserve" role="tab" data-toggle="tab">Reserve</a></li>
+                    <li role="presentation"><a href="#tap" aria-controls="tap" role="tab" data-toggle="tab">Now on Tap</a></li>
+                </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="reserve">
+                    <h2>Your Beers</h2>
+                    <p>Click on any of the beer names and descriptions to edit them. Click on the "Save Changes" button to save changes.</p>
+                    <div id="confirmation">
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Beer</th>
+                                <th>Description</th>
+                                <th>Move to Tap</th>
+                                <th>Save Changes</th>
+                                <th>Delete Beer From Collection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <button type="submit" class="btn btn-primary" ng-click="refreshBeers()">Refresh
+                            </button> -->
+                            <tr ng-repeat="beer in beers">
+                                <td>
+                                    <input type="text" ng-model="beer.title">
+                                </td>
+                                <td>
+                                    <textarea ng-model="beer.description"></textarea>
+                                </td>
+                                <td>
+                                    <input type="checkbox" ng-model="beer.done" ng-change="updateBeer(beer)"/>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" ng-click="saveChanges(beer)">Save Changes</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" ng-click="removeBeer(beer)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="tap">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Beer</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="beer in beers">
+                            <td ng-if="beer.done == true">{{beer.title}}</td>
+                            <td ng-if="beer.done == true">{{beer.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                          
+                </div>
+
+                <div role="tabpanel" class="tab-pane active" id="add"> 
+
+                    <form ng-submit="addBeer(newBeer)">
+                        <div class="form-group">
+                            <br>
+                            <input required type="text" id="beer-title" class="form-control"
+                                   placeholder="title of new beer" ng-model="newBeer.title"/>
+                            <textarea required type="text" id="beer-description" class="form-control" placeholder="description of new beer" ng-model="newBeer.description"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-disabled="inserting">Add Beer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.2/angular.min.js"></script>
+         <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
