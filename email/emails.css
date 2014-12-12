@@ -1,0 +1,18 @@
+/*
+	Group 6
+	INFO 343 with Morris
+    Kyle Bergman, Tammy Nguyen, Rhea Arora, Sean Cheong
+*/
+
+#logo {
+	width: 300px;
+	height: 300px;
+}
+
+#titles, #logo {
+	display: inline-block;
+}
+
+main {
+	margin: 20px;
+}
